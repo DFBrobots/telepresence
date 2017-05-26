@@ -1,7 +1,7 @@
 #define HARDWARE            "Dual motor controll"
 #define HARDWARE_desc       ""
 #define VERSION             ""
-#define URL                 ""
+#define URL                 "https://github.com/KlaatuBaradaNikto/telepresence_base_PIC18"
 
 
 /******************************************************************************/
