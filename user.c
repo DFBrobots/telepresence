@@ -280,14 +280,19 @@ void enable(unsigned char enDis) {
 }
 
 
+
 void stop_now(int mot) {
     if (mot == 0) { 			// Both motors
-        CCPR1H = 0x00;
-		CCPR2H = 0x00;
+        while (CCPR1L > 0) { CCPR1L--; __delay_ms(4);}
+		//CCPR1L = 0x00;
+        while (CCPR2L > 0) { CCPR2L--; __delay_ms(4); }
+		//CCPR2L = 0x00;
      } else if (mot == 1) {		// Motor 1
-        CCPR1H = 0x00;
+        while (CCPR1L > 0) { CCPR1L--; __delay_ms(4); }
+        //CCPR1L = 0x00;
     } else if (mot == 2) {		// Motor 2
-        CCPR2H = 0x00;
+        while (CCPR2L > 0) { CCPR2L--; __delay_ms(4); }
+        //CCPR2L = 0x00;
     } else {
         
     }
@@ -296,15 +301,16 @@ void stop_now(int mot) {
 // Set to drive to forward first, then set the speed
 // To do: put in some checking for too big of a speed change, or a direction reversal
 void fwd(int mot, unsigned char pwm_val) {
+	
 	DIR1 = 1;	// Direction, 1 = forward, 2 = reverse
 	DIR2 = 1;
     if (mot == 0) { 			// Both motors
-        CCPR1H = pwm_val;
-		CCPR2H = pwm_val;
+        CCPR1L = pwm_val;
+		CCPR2L = pwm_val;
      } else if (mot == 1) {		// Motor 1
-        CCPR1H = pwm_val;
+        CCPR1L = pwm_val;
     } else if (mot == 2) {		// Motor 2
-        CCPR2H = pwm_val;
+        CCPR2L = pwm_val;
     } else {
         
     }
@@ -316,12 +322,12 @@ void rev(int mot, unsigned char pwm_val) {
 	DIR1 = 0;	// Direction, 1 = forward, 2 = reverse
 	DIR2 = 0;
     if (mot == 0) { 			// Both motors
-        CCPR1H = pwm_val;
-		CCPR2H = pwm_val;
+        CCPR1L = pwm_val;
+		CCPR2L = pwm_val;
      } else if (mot == 1) {		// Motor 1
-        CCPR1H = pwm_val;
+        CCPR1L = pwm_val;
     } else if (mot == 2) {		// Motor 2
-        CCPR2H = pwm_val;
+        CCPR2L = pwm_val;
     } else {
         
     }
@@ -345,12 +351,12 @@ void set_dir(int mot, unsigned char direction) {
 // To do: put in some checking for too big of a speed change
 void set_pwm(int mot, unsigned char pwm_val) {
     if (mot == 0) { 			// Both motors
-        CCPR1H = pwm_val;
-		CCPR2H = pwm_val;
+        CCPR1L = pwm_val;
+		CCPR2L = pwm_val;
      } else if (mot == 1) {		// Motor 1
-        CCPR1H = pwm_val;
+        CCPR1L = pwm_val;
     } else if (mot == 2) {		// Motor 2
-        CCPR2H = pwm_val;
+        CCPR2L = pwm_val;
     } else {
         
     }

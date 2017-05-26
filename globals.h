@@ -117,6 +117,16 @@ struct i2cv {
 	char data4;
 } I2C_dataset;
 
+struct motCondition {
+	unsigned char mot1dir;
+	unsigned char mot1dir;
+	unsigned char mot1CCPRL;
+	unsigned char mot1CCPRL;
+	unsigned char mot1CCPRH;
+	unsigned char mot1CCPRH;
+}
+	
+
 bit     SleepFlag;
 
 char    I2C_addr;
