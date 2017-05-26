@@ -83,9 +83,9 @@ void main(void)
     InitApp();
 
     // I2C_data[0] = device address
-    // I2C_data[1] = Command byte
-    // I2C_data[2] = number of bytes to follow
-    // I2C_data[3] = Motor # (0 for both, 1, or 2)
+    // I2C_command		I2C_data[1] = Command byte
+    // I2C_byteCount	I2C_data[2] = number of bytes to follow
+    // I2C_motSelect	I2C_data[3] = Motor # (0 for both, 1, or 2)
     // I2C_data[4] = parameter value1
     // I2C_data[5] = parameter value2
     // I2C_data[6] = parameter value3
@@ -106,15 +106,15 @@ void main(void)
             GIE = 0;
             if (command == smBattRelay) {  // Battery cut off
                 // [value1] 0 = off, 1 = on
-                battCut(I2C_data[4]);
+                battCut(I2C_param1);
             } else if (command == smMotorEnable) {  // Enable
                 // [Motor], [value1] 0 = disable / 1 = enable
-                enable(I2C_data[4]);
+                enable(I2C_param1);
             } else if (command == smSystemIdle) { // Idle MCU
 			
             } else if (command == smFullStop) { // Stop
                 // [Motor] 1, 2, or 3 for both
-                stop_now(I2C_data[3]);
+                stop_now(I2C_motSelect);
             } else if (command == smBrake) { // Braking
 			
             } else if (command == smDirection) { // Set direction

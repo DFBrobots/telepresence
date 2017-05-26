@@ -78,7 +78,15 @@
 /******************************************************************************/
 // Macros
 /******************************************************************************/
-#define command I2C_data[1]
+#define I2C_address 	I2C_data[0]		// I2C_data[0] = device address
+#define I2C_command 	I2C_data[1]		// I2C_data[1] = Command byte
+#define I2C_byteCount 	I2C_data[2]		// I2C_data[2] = number of bytes to follow
+#define I2C_motSelect 	I2C_data[3]		// I2C_data[3] = Motor # (0 for both, 1, or 2)
+#define I2C_param1		I2C_data[4] 	// I2C_data[4] = parameter value1
+#define I2C_param2		I2C_data[5] 	// I2C_data[5] = parameter value2
+#define I2C_param3		I2C_data[6] 	// I2C_data[6] = parameter value3
+#define I2C_param4		I2C_data[7] 	// I2C_data[7] = parameter value4
+
 
 // State machine states
 #define smBattRelay     0x00

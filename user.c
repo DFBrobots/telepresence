@@ -73,7 +73,7 @@ void InitApp(void)
 	// To do: First time processing. Read address in EEPROM. If it's blank, then set it to the default address.
     I2C_addr    = default_I2C_addr;	// To do: Read address from EEPROM
     SSP1ADD     = I2C_addr << 1;
-    
+    I2C_address	= SSP1ADD;
 	
     // Set up PWM
 	TRISCbits.TRISC5 = 1;		// Disable pin for PWM1 while setting up for PWM
@@ -156,6 +156,7 @@ void InitApp(void)
 	// To do: First time processing. Read address in EEPROM. If it's blank, then set it to the default address.
     I2C_addr    = default_I2C_addr;	// To do: Read address from EEPROM
     SSP1ADD     = I2C_addr << 1;
+    I2C_address	= SSP1ADD;
     
 	
     // Set up PWM
